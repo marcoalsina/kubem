@@ -1,0 +1,623 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Main module &mdash; kubem 0.0.1a documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="IO module" href="io_module.html" />
+    <link rel="prev" title="How to install" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/kubem_logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">How to install</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io_module.html">IO module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geo_module.html">Geo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils_module.html">Utilities module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">kubem</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Main module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/main_module.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-kubem.main">
+<span id="main-module"></span><h1>Main module<a class="headerlink" href="#module-kubem.main" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">kubem</span></code> is designed to perform analysis on <code class="docutils literal notranslate"><span class="pre">building</span> <span class="pre">records</span></code>.
+However, building energy (BE) databases for Chilean institutions
+contain <code class="docutils literal notranslate"><span class="pre">institutional</span> <span class="pre">records</span></code>, which present the following
+issues:</p>
+<ul class="simple">
+<li><p>Monthly electricity consumption on single or multiple floors,
+but not the entire building.</p></li>
+<li><p>Information for different institutions within the same building
+(i.e. identical address).</p></li>
+<li><p>Missing values of monthly electricity consumption.</p></li>
+<li><p>Ambiguous records of building floors, surfaces, and addresses.</p></li>
+</ul>
+<p>Therefore, BE databases containng <code class="docutils literal notranslate"><span class="pre">institutional</span> <span class="pre">records</span></code> must be
+pre-processed and scaled to <code class="docutils literal notranslate"><span class="pre">building</span> <span class="pre">records</span></code> before analysis.</p>
+<p>The <a class="reference internal" href="#module-kubem.main" title="kubem.main"><code class="xref py py-mod docutils literal notranslate"><span class="pre">main</span></code></a> module offers the following functions
+to process BE dataframes:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#kubem.main.pre_process" title="kubem.main.pre_process"><code class="xref py py-func docutils literal notranslate"><span class="pre">pre_process()</span></code></a></p></td>
+<td><p>Pre-process a BE dataframe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#kubem.main.seasonal_factors" title="kubem.main.seasonal_factors"><code class="xref py py-func docutils literal notranslate"><span class="pre">seasonal_factors()</span></code></a></p></td>
+<td><p>Computes seasonal factors of electricity consumption.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#kubem.main.fill_missing_consumption" title="kubem.main.fill_missing_consumption"><code class="xref py py-func docutils literal notranslate"><span class="pre">fill_missing_consumption()</span></code></a></p></td>
+<td><p>Fills missing records of electricity consumption.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#kubem.main.del_consumption_outliers" title="kubem.main.del_consumption_outliers"><code class="xref py py-func docutils literal notranslate"><span class="pre">del_consumption_outliers()</span></code></a></p></td>
+<td><p>Removes outlier records of electricity consumption.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#kubem.main.calculate_floors" title="kubem.main.calculate_floors"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_floors()</span></code></a></p></td>
+<td><p>Calculates number of floors per building.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#kubem.main.merge_address" title="kubem.main.merge_address"><code class="xref py py-func docutils literal notranslate"><span class="pre">merge_address()</span></code></a></p></td>
+<td><p>Merges buiding records with identical address.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#kubem.main.scale_building_consumption" title="kubem.main.scale_building_consumption"><code class="xref py py-func docutils literal notranslate"><span class="pre">scale_building_consumption()</span></code></a></p></td>
+<td><p>Scales electricity consumption based on building floors.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt id="kubem.main.pre_process">
+<code class="sig-prename descclassname">kubem.main.</code><code class="sig-name descname">pre_process</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em>, <em class="sig-param"><span class="n">thres_null</span><span class="o">=</span><span class="default_value">6</span></em>, <em class="sig-param"><span class="n">thres_zeros</span><span class="o">=</span><span class="default_value">6</span></em><span class="sig-paren">)</span><a class="headerlink" href="#kubem.main.pre_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pre-process a BE dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>) – BE dataframe before pre-processing.</p></li>
+<li><p><strong>thres_null</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Threshold value to remove row with null records.
+The default is 6.</p></li>
+<li><p><strong>thres_zeros</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Threshold value to remove row with zeroes.
+The default is 6.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p>Index of rows with null records larger than threshold.</p></li>
+<li><p>Index of rows with zeroes larger than threshold.</p></li>
+<li><p>Pre-processed BE dataframe.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> is not a valid Excel BE dataframe.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p><a class="reference internal" href="#kubem.main.pre_process" title="kubem.main.pre_process"><code class="xref py py-func docutils literal notranslate"><span class="pre">pre_process()</span></code></a> performs the following operations on a valid
+Excel BE dataframe:</p>
+<ul class="simple">
+<li><p>Removal of rows with number of <a class="reference external" href="https://numpy.org/doc/stable/reference/constants.html#numpy.nan" title="(in NumPy v1.20)"><code class="xref py py-data docutils literal notranslate"><span class="pre">nan</span></code></a> records larger than
+<code class="docutils literal notranslate"><span class="pre">thres_nan</span></code>.</p></li>
+<li><p>Removal of rows with number of zero records larger than <code class="docutils literal notranslate"><span class="pre">thres_zeroes</span></code>.</p></li>
+<li><p>Reomval of rows with infinite <code class="docutils literal notranslate"><span class="pre">building_area</span></code> value.</p></li>
+<li><p>Removal of rows with duplicate <code class="docutils literal notranslate"><span class="pre">building_ID</span></code> records. Only the last
+row is kept, which should coincide with the summary of total energy
+consumption for the building.</p></li>
+</ul>
+<p>The validity <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> is assessed through the column names,
+which are expected to be in English and follow the conventional notation
+for energy building assessment dataframes.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-func docutils literal notranslate"><span class="pre">read_excel()</span></code></dt><dd><p>Reads a valid BE Excel spreadsheet.</p>
+</dd>
+<dt><a class="reference internal" href="utils_module.html#kubem.utils.test_dataframe" title="kubem.utils.test_dataframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">test_dataframe()</span></code></a></dt><dd><p>Test validity of a BE dataframe.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="kubem.main.seasonal_factors">
+<code class="sig-prename descclassname">kubem.main.</code><code class="sig-name descname">seasonal_factors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em><span class="sig-paren">)</span><a class="headerlink" href="#kubem.main.seasonal_factors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes seasonal factors of monthly electricity consumption.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataframe</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>) – BE dataframe after pre-processing.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Seasonal factors for monthly electricity consumption.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> is not a valid BE dataframe.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Seasonal factors are calculated based on the monthly
+electricity consumption of institutional records
+normalized by their average monthly consumption:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f_{j}        &amp;= \frac{\displaystyle \sum_{i=1}^{n_j} c_{ij}'}{n_j} \\
+\\
+c_{ij}' &amp;= c_{ij} \cdot \frac{12}{\displaystyle \sum_{j=1}^{12} c_{ij}}\end{split}\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f_{j}\)</span>: seasonal factor for month <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_{ij}\)</span>: electricity consumption in month <span class="math notranslate nohighlight">\(j\)</span>
+for institution <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_{ij}'\)</span>: normalized electricity consumption
+in month <span class="math notranslate nohighlight">\(j\)</span> for institution <span class="math notranslate nohighlight">\(i\)</span> .</p></li>
+<li><p><span class="math notranslate nohighlight">\(n_j\)</span>: number of institutional records to compute seasonal
+factor of month <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
+</ul>
+<p>Institutional records with any zeroes or <a class="reference external" href="https://numpy.org/doc/stable/reference/constants.html#numpy.nan" title="(in NumPy v1.20)"><code class="xref py py-data docutils literal notranslate"><span class="pre">nan</span></code></a> are
+discarded from the calculation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Consider implementing the median for calculating the seasonal factors,
+and filtering <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> to a single location.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="kubem.main.fill_missing_consumption">
+<code class="sig-prename descclassname">kubem.main.</code><code class="sig-name descname">fill_missing_consumption</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em><span class="sig-paren">)</span><a class="headerlink" href="#kubem.main.fill_missing_consumption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fills missing records of monthly electricity consumption.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataframe</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>) – BE dataframe after pre-processing.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>BE dataframe with filled missing records.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> is not a valid BE dataframe.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Missing records of monthly electricity consumption are
+calculated based on seasonal factors:</p>
+<div class="math notranslate nohighlight">
+\[\hat{c_{ik}} = \displaystyle f_k  \cdot \sum_{j} \frac{c_{ij}}{f_{j} \cdot n_i}\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{c_{ik}}\)</span>: estimated monthly electricity consumption
+in month <span class="math notranslate nohighlight">\(k\)</span> for institution <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_{ij}\)</span>: monthly electricity consumption in month
+<span class="math notranslate nohighlight">\(j\)</span> for institution <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_j\)</span>: seasonal factor for month <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n_i\)</span>: number of known monhtly electricity consumption values
+for institution <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#kubem.main.seasonal_factors" title="kubem.main.seasonal_factors"><code class="xref py py-func docutils literal notranslate"><span class="pre">seasonal_factors()</span></code></a></dt><dd><p>Computes seasonal factors of monthly electricity consumption.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="kubem.main.del_consumption_outliers">
+<code class="sig-prename descclassname">kubem.main.</code><code class="sig-name descname">del_consumption_outliers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em><span class="sig-paren">)</span><a class="headerlink" href="#kubem.main.del_consumption_outliers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes outlier records of electricity consumption.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataframe</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>) – BE dataframe with filled missing records.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p>Index of rows with outlier consumption.</p></li>
+<li><p>BE dataframe with outlier records removed.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> is not a valid BE dataframe.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> contains missing monthly electricity
+    consumption values (zeros or <a class="reference external" href="https://numpy.org/doc/stable/reference/constants.html#numpy.nan" title="(in NumPy v1.20)"><code class="xref py py-data docutils literal notranslate"><span class="pre">nan</span></code></a>).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Outliers are identified based on the interquartile range (IQR)
+of yearly electricity consumption for each record in <code class="docutils literal notranslate"><span class="pre">dataframe</span></code>
+normalized by its value of <code class="docutils literal notranslate"><span class="pre">building_area</span></code>.</p>
+<p>A record of <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> is removed if any of the following
+inequalities is met:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\frac{y_i}{A_i} &amp;&lt; q_1 - 1.5 \cdot IQR\\\frac{y_i}{A_i} &amp;&gt; q_3 + 1.5 \cdot IQR\\y_i &amp;= \sum_{j=1}^{12} c_{ij}\end{aligned}\end{align} \]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(c_{ij}\)</span>: monthly electricity consumption in month
+<span class="math notranslate nohighlight">\(j\)</span> for record <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_i\)</span>: building area for record <span class="math notranslate nohighlight">\(i\)</span>..</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_k\)</span>: quartile <span class="math notranslate nohighlight">\(k\)</span> for yearly electricity consumptions.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">building_area</span></code> record may need to be scaled by the number of floors
+in order to perform this analysis.</p>
+<p>Outlier analysis could be expanded to consider IQR for monthly electricity
+consumption.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="kubem.main.calculate_floors">
+<code class="sig-prename descclassname">kubem.main.</code><code class="sig-name descname">calculate_floors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em>, <em class="sig-param"><span class="n">show_warnings</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#kubem.main.calculate_floors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates number of floors per record.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>) – BE dataframe after pre-processing.</p></li>
+<li><p><strong>show_warnings</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Controls the printing of warnings for not properly
+recognized number of floors. Default is True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>BE dataframe with calculated number of floors.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> is not a valid BE dataframe.</p>
+</dd>
+<dt class="field-odd">Warns</dt>
+<dd class="field-odd"><p><strong>UserWarning</strong> – If the described number of floors in <code class="docutils literal notranslate"><span class="pre">building_address</span></code> is not
+properly recognized.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The number of floors per institutional record is interpreted based
+on the description provided in the <code class="docutils literal notranslate"><span class="pre">building_address</span></code> record of
+<code class="docutils literal notranslate"><span class="pre">dataframe</span></code>:</p>
+<p>Regular expresssions are used to process the <code class="docutils literal notranslate"><span class="pre">building_address</span></code>,
+in order to account for different syntax of records:</p>
+<ul class="simple">
+<li><p>Some special characters (e.g. ‘;|,|y’) are considered charcter separators.</p></li>
+<li><p>Offending characters are stripped from the original string before
+analysis (‘°, .’),</p></li>
+<li><p>Mezzanines (‘entrepiso’), and underground (‘subterráneo’) are
+counted as valid floors.</p></li>
+<li><p>Some special strings (e.g. ‘X al Y’, ‘Todos’) are interpreted based on the
+available information.</p></li>
+</ul>
+<p>The resulting value per building is stored in a new column <code class="docutils literal notranslate"><span class="pre">floors</span></code>
+in <code class="docutils literal notranslate"><span class="pre">dataframe</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Floor values described in the <code class="docutils literal notranslate"><span class="pre">building_address</span></code> column of <code class="docutils literal notranslate"><span class="pre">dataframe</span></code>
+may be ambiguous, so the function may not properly estimate the number
+of floors for some records.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="kubem.main.merge_address">
+<code class="sig-prename descclassname">kubem.main.</code><code class="sig-name descname">merge_address</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em><span class="sig-paren">)</span><a class="headerlink" href="#kubem.main.merge_address" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merges institutional records with same address.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataframe</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>) – BE dataframe after calculating floors
+per institutional record.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p>Index of rows with same building address.</p></li>
+<li><p>BE dataframe with merged buildings.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> is not a valid BE dataframe.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> does not contain a <code class="docutils literal notranslate"><span class="pre">floor</span></code> column.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> contains rows with duplicated
+    <code class="docutils literal notranslate"><span class="pre">building_ID</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Some institutional records in <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> refer to different
+floors in the same building address. These records possess a
+different <code class="docutils literal notranslate"><span class="pre">building_ID</span></code>, so they must be merged in order
+to analyze the building as a single entity.</p>
+<p>Merge is performed in the following columns of <code class="docutils literal notranslate"><span class="pre">dataframe</span></code>
+for the duplcated address records:</p>
+<ul class="simple">
+<li><p>monthly electricity consumption: <code class="docutils literal notranslate"><span class="pre">m1</span></code> to <code class="docutils literal notranslate"><span class="pre">m12</span></code>
+(each month is added separately).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">floors</span></code>: calculated by addition of the duplicated adress records.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_floors</span></code>: calculated as the maximum of the duplicated address records.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">building_area</span></code>: calculated as the maximum of the duplicated address records.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The returned dataframe will only keep the records of the first
+duplicate address, despite containing merged records.
+Therefore the remaining records -including, but not limited
+to <code class="docutils literal notranslate"><span class="pre">institution</span></code>, <code class="docutils literal notranslate"><span class="pre">building_name</span></code>, and <code class="docutils literal notranslate"><span class="pre">building_ID</span></code>-
+will no longer be representative of the merged building.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="kubem.main.scale_building_consumption">
+<code class="sig-prename descclassname">kubem.main.</code><code class="sig-name descname">scale_building_consumption</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em>, <em class="sig-param"><span class="n">show_warnings</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#kubem.main.scale_building_consumption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scales monthly electricity consumption by building floors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>) – BE dataframe after merging institutions with same address.</p></li>
+<li><p><strong>show_warnings</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Controls the printing of warnings for ambiguous
+floor records. Default is True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>BE dataframe with scaled monthly electricity consumption.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> is not a valid BE dataframe.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> does not contain a <code class="docutils literal notranslate"><span class="pre">floor</span></code> column.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> contains rows with same address.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Warns</dt>
+<dd class="field-odd"><p><strong>UserWarning</strong> – If value of <code class="docutils literal notranslate"><span class="pre">total_floors</span></code> is smaller than <code class="docutils literal notranslate"><span class="pre">floors</span></code>.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The monthly energy consumption for the entire building
+is scaled by the number of floors as follows:</p>
+<div class="math notranslate nohighlight">
+\[\bar{c_{ij}}= \frac{Nt_i}{Nr_i} c_{ij}\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bar{c_{ij}}\)</span>: estimated monthly electricity consumption
+in month <span class="math notranslate nohighlight">\(j\)</span> for full building <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_{ij}\)</span>: electricity consumption in month <span class="math notranslate nohighlight">\(j\)</span>
+for building <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Nt_i\)</span>: number of total floors for building <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Nr_l\)</span>: number of floors reported for buildng <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>After scaling by floors, the column containing <code class="docutils literal notranslate"><span class="pre">floors</span></code> records
+will be removed from the dataframe.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Total number of floor specified in the column <code class="docutils literal notranslate"><span class="pre">total_floors</span></code> of <code class="docutils literal notranslate"><span class="pre">dataframe</span></code>
+may in some instances be smaller than the number of floors reported in the
+<code class="docutils literal notranslate"><span class="pre">floors</span></code> column. In such cases the monthly electricity consumption will not
+be scaled, and the value in <code class="docutils literal notranslate"><span class="pre">total_flooors</span></code> will be updated with the value
+in <code class="docutils literal notranslate"><span class="pre">floors</span></code>.</p>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="io_module.html" class="btn btn-neutral float-right" title="IO module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install.html" class="btn btn-neutral float-left" title="How to install" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021, Kipus Software Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
