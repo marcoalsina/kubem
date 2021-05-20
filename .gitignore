@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / Packaging
+*.egg-info/
+
+# Sphinx documentation
+#docs/build
+docs/build/doctrees
+docs/build/plot_directive
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Jupyter Notebook
+.ipynb_checkpoints

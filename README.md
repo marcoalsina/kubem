@@ -1,8 +1,7 @@
-# KUBEM
+# kubem
 
-`kubem` is a Python library to process and analyze data on building energy consumption for
-Chilean cities. It is developed by the Kipus Technological Center at the Faculty of Engineering
-of University of Talca.
+`kubem` is a Python library to process and analyze data on building energy consumption, with emphasis in Chilean cities.
+It is developed by the Kipus Technological Center at the Faculty of Engineering of University of Talca.
 
 ## Documentation
 
